@@ -37,7 +37,7 @@ public class ComplexPrimaryKeyManyToRoot {
       this.salt = salt;
     }
 
-    public ComplexPrimaryKey() { }
+    private ComplexPrimaryKey() { }
 
     public Root getRoot() {
       return root;

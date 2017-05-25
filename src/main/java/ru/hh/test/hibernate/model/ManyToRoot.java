@@ -25,7 +25,7 @@ public class ManyToRoot {
     this.root = root;
   }
 
-  public ManyToRoot() {
+  private ManyToRoot() {
   }
 
   public Integer getId() {

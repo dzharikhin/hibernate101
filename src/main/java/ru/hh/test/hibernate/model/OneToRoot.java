@@ -27,7 +27,7 @@ public class OneToRoot {
     this.root = root;
   }
 
-  public OneToRoot() {
+  private OneToRoot() {
   }
 
   public Integer getId() {
