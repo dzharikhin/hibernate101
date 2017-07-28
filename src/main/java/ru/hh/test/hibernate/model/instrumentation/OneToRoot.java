@@ -1,4 +1,4 @@
-package ru.hh.test.hibernate.model;
+package ru.hh.test.hibernate.model.instrumentation;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

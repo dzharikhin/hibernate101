@@ -1,4 +1,4 @@
-package ru.hh.test.hibernate.model;
+package ru.hh.test.hibernate.model.instrumentation;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,53 +1,27 @@
 package ru.hh.test.hibernate;
 
 import java.util.Collections;
-import javax.persistence.EntityTransaction;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import ru.hh.test.hibernate.model.ComplexPrimaryKeyManyToRoot;
-import ru.hh.test.hibernate.model.ManyToRoot;
-import ru.hh.test.hibernate.model.OneToRoot;
-import ru.hh.test.hibernate.model.Root;
+import ru.hh.test.hibernate.model.instrumentation.ComplexPrimaryKeyManyToRoot;
+import ru.hh.test.hibernate.model.instrumentation.ManyToRoot;
+import ru.hh.test.hibernate.model.instrumentation.OneToRoot;
+import ru.hh.test.hibernate.model.instrumentation.Root;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class InstrumentationTest {
+public class InstrumentationTest extends AbstractHibernateTest {
 
-  private SessionFactory sessionFactory;
-  private EntityTransaction transaction;
 
-  @Before
-  public void before() {
-    sessionFactory = new Configuration()
-      .setProperty(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread")
-      .setProperty(Environment.SHOW_SQL, "true")
-      .setProperty(Environment.HBM2DDL_AUTO, "create-drop")
-//      .setProperty(Environment.FORMAT_SQL, "true")
-
-      .setProperty(Environment.DRIVER, "org.h2.Driver")
-      .setProperty(Environment.DIALECT, "org.hibernate.dialect.H2Dialect")
-      .setProperty(Environment.URL, "jdbc:h2:mem:test")
-      .setProperty(Environment.JPA_JDBC_USER, "sa")
-      .setProperty(Environment.JPA_JDBC_PASSWORD, "")
-
+  @Override
+  protected Configuration configureSpecific(Configuration initialConfig) {
+    return initialConfig
       .addAnnotatedClass(Root.class)
       .addAnnotatedClass(OneToRoot.class)
       .addAnnotatedClass(ManyToRoot.class)
-      .addAnnotatedClass(ComplexPrimaryKeyManyToRoot.class)
-
-      .buildSessionFactory();
-    transaction = sessionFactory.getCurrentSession().beginTransaction();
-  }
-
-  @After
-  public void after() {
-    transaction.rollback();
+      .addAnnotatedClass(ComplexPrimaryKeyManyToRoot.class);
   }
 
   @Test
