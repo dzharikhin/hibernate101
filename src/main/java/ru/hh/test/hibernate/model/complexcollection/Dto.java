@@ -1,4 +1,4 @@
-package ru.hh.test.hibernate.model.collection;
+package ru.hh.test.hibernate.model.complexcollection;
 
 import java.io.Serializable;
 import java.util.Objects;

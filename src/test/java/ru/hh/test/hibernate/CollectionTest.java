@@ -5,8 +5,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
-import ru.hh.test.hibernate.model.collection.CollectionRoot;
-import ru.hh.test.hibernate.model.collection.Dto;
+import ru.hh.test.hibernate.model.complexcollection.CollectionRoot;
+import ru.hh.test.hibernate.model.complexcollection.Dto;
 import static org.junit.Assert.assertEquals;
 
 public class CollectionTest extends AbstractHibernateTest {
