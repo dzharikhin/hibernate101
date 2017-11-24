@@ -1,6 +1,7 @@
 package ru.hh.test.hibernate.model.instrumentation;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
@@ -41,6 +42,24 @@ public class ComplexPrimaryKeyManyToRoot {
 
     public Root getRoot() {
       return root;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) {
+        return true;
+      }
+      if (!(o instanceof ComplexPrimaryKey)) {
+        return false;
+      }
+      ComplexPrimaryKey that = (ComplexPrimaryKey) o;
+      return salt == that.salt &&
+        Objects.equals(root, that.root);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(root, salt);
     }
   }
 }

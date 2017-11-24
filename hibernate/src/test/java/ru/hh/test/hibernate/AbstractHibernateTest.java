@@ -1,5 +1,6 @@
 package ru.hh.test.hibernate;
 
+import java.util.Optional;
 import javax.persistence.EntityTransaction;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -31,7 +32,8 @@ public abstract class AbstractHibernateTest {
 
   @After
   public void after() {
-    transaction.rollback();
+    Optional.ofNullable(transaction).ifPresent(EntityTransaction::rollback);
+    sessionFactory.close();
   }
 
   protected abstract Configuration configureSpecific(Configuration initialConfig);
